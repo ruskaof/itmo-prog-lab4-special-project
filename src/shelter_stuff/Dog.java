@@ -1,11 +1,9 @@
-package shelter;
-
-import shelter.Animal;
+package shelter_stuff;
 
 public class Dog extends Animal {
     protected final DogBreed breed;
 
-    Dog(String name, DogBreed breed){
+    public Dog(String name, DogBreed breed){
         super(name);
         this.breed = breed;
     }

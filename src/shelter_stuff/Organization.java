@@ -1,6 +1,6 @@
-package shelter;
+package shelter_stuff;
 
-import shelter.City;
+import human_stuff.Human;
 
 import java.util.HashSet;
 
@@ -14,9 +14,10 @@ public class Organization {
         this.city = city;
     }
 
-    static class Event {
+    public static class Event {
         private final String name;
         private boolean isEnded = false;
+        private final HashSet<Human> participants = new HashSet<>();
         private int yearOfCreation;
 
         public Event(String name) {
@@ -34,6 +35,10 @@ public class Organization {
 
         public boolean getIsEnded() {
             return isEnded;
+        }
+
+        public void addParticipant(Human human) {
+            participants.add(human);
         }
     }
 

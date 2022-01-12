@@ -1,4 +1,4 @@
-package shelter;
+package shelter_stuff;
 
 public class Animal {
     protected final String name;

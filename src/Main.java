@@ -1,7 +1,7 @@
-import shelter.AnimalShelter;
-import shelter.City;
-import shelter.Dog;
-import shelter.DogBreed;
+import shelter_stuff.AnimalShelter;
+import shelter_stuff.City;
+import shelter_stuff.Dog;
+import shelter_stuff.DogBreed;
 
 /*
 Приют «Домашний» третий год подряд проводит благотворительный флешмоб

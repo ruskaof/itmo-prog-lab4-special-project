@@ -1,11 +1,9 @@
-package shelter;
-
-import shelter.Animal;
+package shelter_stuff;
 
 import java.util.HashSet;
 
 public class AnimalShelter extends Organization {
-    AnimalShelter(String name, City city) {
+    public AnimalShelter(String name, City city) {
         super(name, city);
     }
 
