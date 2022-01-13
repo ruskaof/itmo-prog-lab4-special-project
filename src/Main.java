@@ -1,7 +1,10 @@
-import shelter_stuff.AnimalShelter;
-import shelter_stuff.City;
-import shelter_stuff.Dog;
-import shelter_stuff.DogBreed;
+import human_stuff.Human;
+import human_stuff.Photo;
+import human_stuff.Post;
+import human_stuff.Profession;
+import shelter_stuff.*;
+
+import java.util.HashSet;
 
 /*
 Приют «Домашний» третий год подряд проводит благотворительный флешмоб
@@ -23,19 +26,42 @@ public class Main {
         domasniy.addAnimal(new Dog("Tuzik", DogBreed.BULLDOG));
         domasniy.addAnimal(new Dog("Zuchka", DogBreed.LABRADOR));
 
-        GlobalTime.getInstance();
+        GlobalTime.getInstance(); // 2019
+//
+//        domasniy.makeEvent();
+//        domasniy.endEvent();
+        GlobalTime.getInstance().passOneYear(); // 2020
+//
+//        domasniy.makeEvent();
+//        domasniy.endEvent();
+        GlobalTime.getInstance().passOneYear(); // 2021
 
-        domasniy.makeEvent("#ПесНаСчастье");
-        domasniy.endEvent("#ПесНаСчастье");
-        GlobalTime.getInstance().passOneYear();
+        // ДАЛЕЕ САМИ СОБЫТИЯ ФЛЕШМОБА
 
-        domasniy.makeEvent("#ПесНаСчастье2");
-        domasniy.endEvent("#ПесНаСчастье2");
-        GlobalTime.getInstance().passOneYear();
+        // Пусть в objects будут храниться собаки, которых раздают подопечным
+        domasniy.makeEvent(new Organization.Event("#ПёсНаСчастье3", domasniy) {
+            @Override
+            public void doEventAction() {
+                try {
+                    HashSet<Animal> remainingAnimals = ((AnimalShelter)getHolder()).getAnimals();
+                    for (Human human : getParticipants()) {
+                        for (Animal animal: remainingAnimals) {
+                            Post post = new Post(new Photo(human, animal),"text", human);
+                            human.getSocialLife().makePost(post);
+                            remainingAnimals.remove(animal);
+                            break;
+                        }
+                    }
+                } catch (IllegalArgumentException e) {
+                    // TODO
+                }
+            }
+        });
 
-        domasniy.makeEvent("#ПесНаСчастье3");
+        domasniy.getCurrentEvent().addParticipant(new Human("Max Pri", Profession.BUSINESSMAN));
+        domasniy.getCurrentEvent().addParticipant(new Human("Emo Kid", Profession.MUSICIAN));
 
-
+        domasniy.getCurrentEvent().getParticipants();
 
 
 
