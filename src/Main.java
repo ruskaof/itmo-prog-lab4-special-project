@@ -36,11 +36,11 @@ public class Main {
         domasniy.addAnimal(new Dog("Zuchka", DogBreed.LABRADOR));
 
         GlobalTime.getInstance(); // 2019
-//
+
 //        domasniy.makeEvent();
 //        domasniy.endEvent();
         GlobalTime.getInstance().passOneYear(); // 2020
-//
+
 //        domasniy.makeEvent();
 //        domasniy.endEvent();
         GlobalTime.getInstance().passOneYear(); // 2021
@@ -57,7 +57,6 @@ public class Main {
         domasniy.getCurrentEvent().doEventAction();
 
 
-        domasniy.getCurrentEvent().getParticipants();
         domasniy.getCurrentEvent().end();
 
     }
