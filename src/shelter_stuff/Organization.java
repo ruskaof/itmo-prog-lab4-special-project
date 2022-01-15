@@ -1,11 +1,12 @@
 package shelter_stuff;
 
+import abstract_things.Narrator;
 import human_stuff.Human;
-import interfaces.EventAction;
+import interfaces.EventHoldable;
 
 import java.util.HashSet;
 
-public class Organization {
+public class Organization implements EventHoldable {
     private final String name;
     private final City city;
     private Event currentEvent;
@@ -15,44 +16,7 @@ public class Organization {
         this.city = city;
     }
 
-    public abstract static class Event {
-        private final Object holder;
-        private final String name;
-        private boolean isEnded = false;
-        private final HashSet<Human> participants = new HashSet<>();
-        private int yearOfCreation;
 
-        public Event(String name, Object holder) {
-            this.name = name;
-            this.holder = holder;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void end() {
-            isEnded = true;
-        }
-
-        public boolean getIsEnded() {
-            return isEnded;
-        }
-
-        public void addParticipant(Human human) {
-            participants.add(human);
-        }
-
-        public Object getHolder() {
-            return holder;
-        }
-
-        public HashSet<Human> getParticipants() {
-            return participants;
-        }
-
-        public abstract void doEventAction();
-    }
 
     public void makeEvent(Event event) {
         this.currentEvent = event;

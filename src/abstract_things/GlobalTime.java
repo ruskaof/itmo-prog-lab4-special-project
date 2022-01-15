@@ -1,3 +1,5 @@
+package abstract_things;
+
 public class GlobalTime {
     private GlobalTime() {
         currentYear = 2019;

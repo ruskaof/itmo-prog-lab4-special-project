@@ -1,11 +1,23 @@
 package human_stuff;
 
+import interfaces.EventHoldable;
+import interfaces.Nameable;
 import interfaces.Ownable;
-import shelter_stuff.Organization;
 
-public class Human implements Ownable {
+import java.util.Objects;
+
+public class Human implements Ownable, EventHoldable, Nameable {
     private final String name;
     private Profession job;
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "name='" + name + '\'' +
+                ", job=" + job +
+                ", socialLife=" + socialLife +
+                '}';
+    }
 
     private final SocialLife socialLife;
 
@@ -15,13 +27,20 @@ public class Human implements Ownable {
         this.job = job;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public class SocialLife {
-        public void joinEvent(Organization.Event event) {
-            event.addParticipant(Human.this);
+
+        public void makePost(Post post, SocialNetwork socialNetwork) {
+            socialNetwork.makePost(post);
+            System.out.println(name + " создал пост в социальной сети " + socialNetwork.getName());
         }
 
-        public void makePost(Post post) {
-            // TODO: сделать социальные сети и посты в них
+        @Override
+        public String toString() {
+            return "SocialLife{}";
         }
     }
 
@@ -29,5 +48,16 @@ public class Human implements Ownable {
         return socialLife;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return Objects.equals(name, human.name) && job == human.job && Objects.equals(socialLife, human.socialLife);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, job, socialLife);
+    }
 }

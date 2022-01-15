@@ -1,5 +1,6 @@
 package shelter_stuff;
 
+import interfaces.Nameable;
 import interfaces.Ownable;
 
 public class Dog extends Animal {
@@ -19,5 +20,10 @@ public class Dog extends Animal {
 
     public void setOwner(Ownable owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

@@ -1,10 +1,10 @@
+import abstract_things.GlobalTime;
 import human_stuff.Human;
-import human_stuff.Photo;
-import human_stuff.Post;
 import human_stuff.Profession;
+import human_stuff.SocialNetwork;
 import shelter_stuff.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /*
 Приют «Домашний» третий год подряд проводит благотворительный флешмоб
@@ -21,7 +21,16 @@ import java.util.HashSet;
 улицах города станет меньше.
  */
 public class Main {
+    public static ArrayList<SocialNetwork> socialNetworks = new ArrayList<>();
+
     public static void main(String[] args) {
+
+        SocialNetwork facebook = new SocialNetwork("Facebook");
+        SocialNetwork instagram = new SocialNetwork("Instagram");
+        socialNetworks.add(facebook);
+        socialNetworks.add(instagram);
+
+
         AnimalShelter domasniy = new AnimalShelter("Приют \"Домашний\"", City.MOSCOW);
         domasniy.addAnimal(new Dog("Tuzik", DogBreed.BULLDOG));
         domasniy.addAnimal(new Dog("Zuchka", DogBreed.LABRADOR));
@@ -37,33 +46,19 @@ public class Main {
         GlobalTime.getInstance().passOneYear(); // 2021
 
         // ДАЛЕЕ САМИ СОБЫТИЯ ФЛЕШМОБА
-
-        // Пусть в objects будут храниться собаки, которых раздают подопечным
-        domasniy.makeEvent(new Organization.Event("#ПёсНаСчастье3", domasniy) {
-            @Override
-            public void doEventAction() {
-                try {
-                    HashSet<Animal> remainingAnimals = ((AnimalShelter)getHolder()).getAnimals();
-                    for (Human human : getParticipants()) {
-                        for (Animal animal: remainingAnimals) {
-                            Post post = new Post(new Photo(human, animal),"text", human);
-                            human.getSocialLife().makePost(post);
-                            remainingAnimals.remove(animal);
-                            break;
-                        }
-                    }
-                } catch (IllegalArgumentException e) {
-                    // TODO
-                }
-            }
-        });
-
+        String[] captions = new String[4];
+        captions[0] = "Смотрите, какой лапочка!";
+        captions[1] = "Сам бы его забрал, но девушка не разрешает :(";
+        captions[2] = "Это просто чудо!";
+        captions[3] = "Милоты вам в ленту";
+        domasniy.makeEvent(new DomashniyFlashmob("#ПесНаСчастье", domasniy, captions));
         domasniy.getCurrentEvent().addParticipant(new Human("Max Pri", Profession.BUSINESSMAN));
         domasniy.getCurrentEvent().addParticipant(new Human("Emo Kid", Profession.MUSICIAN));
+        domasniy.getCurrentEvent().doEventAction();
+
 
         domasniy.getCurrentEvent().getParticipants();
-
-
+        domasniy.getCurrentEvent().end();
 
     }
 }
