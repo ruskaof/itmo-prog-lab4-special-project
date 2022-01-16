@@ -54,6 +54,7 @@ public class Main {
         domasniy.makeEvent(new DomashniyFlashmob("#ПесНаСчастье", domasniy, captions));
         domasniy.getCurrentEvent().addParticipant(new Human("Max Pri", Profession.BUSINESSMAN));
         domasniy.getCurrentEvent().addParticipant(new Human("Emo Kid", Profession.MUSICIAN));
+
         domasniy.getCurrentEvent().doEventAction();
 
 
