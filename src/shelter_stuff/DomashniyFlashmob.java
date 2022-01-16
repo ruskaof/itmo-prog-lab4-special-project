@@ -30,11 +30,19 @@ public class DomashniyFlashmob extends Event {
                 Post post = new Post(new Photo(human, animal), captions[new Random().nextInt(4)] , human, this);
                 SocialNetwork[] socialNetworks = new SocialNetwork[Internet.getInstance().getSocialNetworks().size()];
                 socialNetworks = Internet.getInstance().getSocialNetworks().toArray(socialNetworks);
-                human.getSocialLife().makePost(post, socialNetworks[new Random().nextInt(socialNetworks.length)]);
+                SocialNetwork sn = socialNetworks[new Random().nextInt(socialNetworks.length)];
+                human.getSocialLife().makePost(post, sn);
 
-                if (post.getLikes() > 50_000) remainingAnimals.remove(animal);
-                Narrator.tell("Благодаря " + human.getName() + " " + animal.getName() + " был успешно забран из приюта" +
-                        " в добрые руки!");
+                if (post.getLikes() > 50_000) {
+                    for (Human i : sn.getUsers()) {
+                        if (!i.equals(human)) {
+                            i.takeFromAnimalShelter((AnimalShelter) getHolder(), animal);
+                            Narrator.tell("Благодаря " + human.getName() + " " + animal.getName() + " был успешно забран из приюта" +
+                                    " в добрые руки!");
+                            break;
+                        }
+                    }
+                }
                 break;
             }
         }

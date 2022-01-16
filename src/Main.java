@@ -24,11 +24,16 @@ public class Main {
     public static ArrayList<SocialNetwork> socialNetworks = new ArrayList<>();
 
     public static void main(String[] args) {
-
         SocialNetwork facebook = new SocialNetwork("Facebook");
         SocialNetwork instagram = new SocialNetwork("Instagram");
         socialNetworks.add(facebook);
         socialNetworks.add(instagram);
+
+        facebook.addUser(new Human("Thomas", Profession.BUSINESSMAN));
+        facebook.addUser(new Human("Ann", Profession.JOURNALIST));
+        instagram.addUser(new Human("Lily", Profession.MUSICIAN));
+        instagram.addUser(new Human("Vladimir", Profession.BUSINESSMAN));
+        instagram.addUser(new Human("Nick", Profession.JOURNALIST));
 
 
         AnimalShelter domasniy = new AnimalShelter("Приют \"Домашний\"", City.MOSCOW);
