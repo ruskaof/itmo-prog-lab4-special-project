@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class SocialNetwork {
     private final String name;
     private final ArrayList<Post>  posts = new ArrayList<Post>();
-    private final HashSet<Human> users = new HashSet<Human>();
+    private final ArrayList<Human> users = new ArrayList<>();
 
     public SocialNetwork(String name) {
         this.name = name;
@@ -25,7 +25,7 @@ public class SocialNetwork {
         users.add(human);
     }
 
-    public HashSet<Human> getUsers() {
+    public ArrayList<Human> getUsers() {
         return users;
     }
 

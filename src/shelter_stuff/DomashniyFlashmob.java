@@ -6,6 +6,8 @@ import exceptions.InvalidHolderOfEventException;
 import human_stuff.*;
 import interfaces.EventHoldable;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -34,6 +36,7 @@ public class DomashniyFlashmob extends Event {
                 human.getSocialLife().makePost(post, sn);
 
                 if (post.getLikes() > 50_000) {
+                    Collections.shuffle(sn.getUsers());
                     for (Human i : sn.getUsers()) {
                         if (!i.equals(human)) {
                             i.takeFromAnimalShelter((AnimalShelter) getHolder(), animal);
