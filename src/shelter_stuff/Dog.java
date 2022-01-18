@@ -4,7 +4,6 @@ import interfaces.Nameable;
 import interfaces.Ownable;
 
 public class Dog extends Animal {
-    protected Ownable owner;
     protected final DogBreed breed;
 
     public Dog(String name, DogBreed breed) {
