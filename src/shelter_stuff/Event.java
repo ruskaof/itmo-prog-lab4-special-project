@@ -1,5 +1,6 @@
 package shelter_stuff;
 
+import abstract_things.GlobalTime;
 import abstract_things.Narrator;
 import human_stuff.Human;
 import interfaces.EventHoldable;
@@ -12,7 +13,6 @@ public abstract class Event {
     private final String name;
     private boolean isEnded = false;
     private final HashSet<Human> participants = new HashSet<>();
-    private int yearOfCreation;
 
     public Event(String name, EventHoldable holder) {
         this.name = name;
